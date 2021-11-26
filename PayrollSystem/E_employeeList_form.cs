@@ -35,17 +35,26 @@ namespace PayrollSystem
 
             dataGridView1.Rows.Clear();
             cmd = new SqlCommand("use PayrollSystemWInsert execute DisplayEmployees", conn);
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            try
             {
-                dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6]);
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7]);
+                }
+
             }
-
-
-            dr.Close();
-            cmd.Dispose();
-            conn.Close();
+            catch (Exception x)
+            {
+                MessageBox.Show("There is a problem to the LoadList \n\n " + x.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cmd.Dispose();
+                conn.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,25 +85,16 @@ namespace PayrollSystem
             conn.Open();
 
             E_updateEmployee upa = new E_updateEmployee();
-            string first = this.dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            string last = this.dataGridView1.CurrentRow.Cells[2].Value.ToString();
 
-            cmd = new SqlCommand("use PayrollSystemWInsert execute DisplayBankAcc '" + first + "', '" + last + "'", conn);
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                upa.tB_Bank.Text = dr[0].ToString();
-            }
-
-            
             upa.IDNO.Text = this.dataGridView1.CurrentRow.Cells[0].Value.ToString();
             upa.tb_First.Text = this.dataGridView1.CurrentRow.Cells[1].Value.ToString();
             upa.tB_Last.Text = this.dataGridView1.CurrentRow.Cells[2].Value.ToString();
             upa.tB_age.Text = this.dataGridView1.CurrentRow.Cells[3].Value.ToString();
             upa.tB_pos.Text = this.dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            upa.up_TBDeductType.Text = this.dataGridView1.CurrentRow.Cells[5].Value.ToString();
-            upa.up_rTBDescrip.Text = this.dataGridView1.CurrentRow.Cells[6].Value.ToString();
+            upa.tB_Bank.Text = this.dataGridView1.CurrentRow.Cells[5].Value.ToString();
+            upa.up_TBDeductType.Text = this.dataGridView1.CurrentRow.Cells[6].Value.ToString();
+            upa.up_rTBDescrip.Text = this.dataGridView1.CurrentRow.Cells[7].Value.ToString();
+
             upa.Show();
 
             dr.Close();

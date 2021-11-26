@@ -47,41 +47,117 @@ namespace PayrollSystem
 
             dataGridView1.Rows.Clear();
             cmd = new SqlCommand("use PayrollSystemWInsert execute DTRReport",conn);
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            try
             {
-                dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4]);
-            }
+                dr = cmd.ExecuteReader();
 
-            dr.Close();
-            cmd.Dispose();
-            conn.Close();
+                while (dr.Read())
+                {
+                    dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5]);
+                }
+
+                
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("There is a problem in Loading the List \n\n" + x.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cmd.Dispose();
+                conn.Close();
+            }
         }
 
         private void SearchLoadList()
         {
-            conn = connect.getConnect();
-            conn.Open();
-
-            dataGridView1.Rows.Clear();
-            cmd = new SqlCommand("use PayrollSystemWInsert execute SearchDTR '"+tb_EmpID.Text+"'",conn);
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            if (String.IsNullOrEmpty(tb_EmpID.Text))
             {
-                dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4]);
+                MessageBox.Show("Please Input ID First");
             }
+            else
+            {
+                string FromDate = FromDatePick.Value.ToString("yyyy-MM-dd");
+                string ToDate = ToDatePicker.Value.ToString("yyyy-MM-dd");
+                conn = connect.getConnect();
+                conn.Open();
 
-            MessageBox.Show("Search Completed");
-            dr.Close();
-            cmd.Dispose();
-            conn.Close();
+                dataGridView1.Rows.Clear();
+                cmd = new SqlCommand("use PayrollSystemWInsert execute SearchDTR '" + tb_EmpID.Text + "', '" 
+                                                                                    + FromDate + "', '" 
+                                                                                    + ToDate + "'", conn);
+                try
+                {
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5]);
+                        
+                    }
+
+                    MessageBox.Show("Search Completed");
+
+                    int tot = 0;
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        tot += Convert.ToInt32(row.Cells[5].Value);
+                    }
+
+                    lb_total.Text = tot.ToString();
+
+                    
+                    
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show("Failed to Search \n\n" + x.Message);
+                }
+                finally
+                {
+                    dr.Close();
+                    cmd.Dispose();
+                    conn.Close();
+                }
+            }
         }
 
         private void deletebutton_Click(object sender, EventArgs e)
         {
+            conn = connect.getConnect();
+            conn.Open();
 
+           
+
+            cmd = new SqlCommand("use PayrollSystemWInsert execute DeleteDTR '" + dataGridView1.CurrentRow.Cells[0].Value + "'",conn );
+            try
+            {
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Deleted Successfully");
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Failed to Delete \n\n" + x.Message);
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+                LoadList();
+            }
+        }
+
+        private void refreshbutton_Click(object sender, EventArgs e)
+        {
+            tb_EmpID.Clear();
+            LoadList();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

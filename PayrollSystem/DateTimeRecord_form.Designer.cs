@@ -32,6 +32,11 @@ namespace PayrollSystem
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tb_InID = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
@@ -43,7 +48,6 @@ namespace PayrollSystem
             this.Tb_FN = new System.Windows.Forms.TextBox();
             this.Tb_LN = new System.Windows.Forms.TextBox();
             this.Tb_Pos = new System.Windows.Forms.TextBox();
-            this.LeaveButton = new System.Windows.Forms.Button();
             this.InButton = new System.Windows.Forms.Button();
             this.OutButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -51,10 +55,6 @@ namespace PayrollSystem
             this.day_label = new System.Windows.Forms.Label();
             this.Time_label = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,13 +73,49 @@ namespace PayrollSystem
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.Column5,
             this.Column2,
             this.Column3,
             this.Column4});
             this.dataGridView1.Location = new System.Drawing.Point(215, 128);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(567, 353);
+            this.dataGridView1.Size = new System.Drawing.Size(635, 353);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "DTR_id";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Date";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "IN_DTime";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "OUT_DTime";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Employee_id";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 70;
             // 
             // Tb_InID
             // 
@@ -121,7 +157,7 @@ namespace PayrollSystem
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(502, 13);
+            this.label2.Location = new System.Drawing.Point(574, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 21);
             this.label2.TabIndex = 5;
@@ -131,7 +167,7 @@ namespace PayrollSystem
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(517, 40);
+            this.label3.Location = new System.Drawing.Point(589, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 21);
             this.label3.TabIndex = 6;
@@ -141,7 +177,7 @@ namespace PayrollSystem
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(519, 64);
+            this.label4.Location = new System.Drawing.Point(591, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 21);
             this.label4.TabIndex = 7;
@@ -151,7 +187,7 @@ namespace PayrollSystem
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(536, 89);
+            this.label5.Location = new System.Drawing.Point(608, 88);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 21);
             this.label5.TabIndex = 8;
@@ -160,7 +196,7 @@ namespace PayrollSystem
             // Tb_empID
             // 
             this.Tb_empID.Font = new System.Drawing.Font("Microsoft Yi Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tb_empID.Location = new System.Drawing.Point(623, 13);
+            this.Tb_empID.Location = new System.Drawing.Point(695, 12);
             this.Tb_empID.Name = "Tb_empID";
             this.Tb_empID.ReadOnly = true;
             this.Tb_empID.Size = new System.Drawing.Size(143, 21);
@@ -169,7 +205,7 @@ namespace PayrollSystem
             // Tb_FN
             // 
             this.Tb_FN.Font = new System.Drawing.Font("Microsoft Yi Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tb_FN.Location = new System.Drawing.Point(623, 39);
+            this.Tb_FN.Location = new System.Drawing.Point(695, 38);
             this.Tb_FN.Name = "Tb_FN";
             this.Tb_FN.ReadOnly = true;
             this.Tb_FN.Size = new System.Drawing.Size(143, 21);
@@ -178,7 +214,7 @@ namespace PayrollSystem
             // Tb_LN
             // 
             this.Tb_LN.Font = new System.Drawing.Font("Microsoft Yi Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tb_LN.Location = new System.Drawing.Point(623, 63);
+            this.Tb_LN.Location = new System.Drawing.Point(695, 62);
             this.Tb_LN.Name = "Tb_LN";
             this.Tb_LN.ReadOnly = true;
             this.Tb_LN.Size = new System.Drawing.Size(143, 21);
@@ -187,25 +223,11 @@ namespace PayrollSystem
             // Tb_Pos
             // 
             this.Tb_Pos.Font = new System.Drawing.Font("Microsoft Yi Baiti", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tb_Pos.Location = new System.Drawing.Point(623, 88);
+            this.Tb_Pos.Location = new System.Drawing.Point(695, 87);
             this.Tb_Pos.Name = "Tb_Pos";
             this.Tb_Pos.ReadOnly = true;
             this.Tb_Pos.Size = new System.Drawing.Size(143, 21);
             this.Tb_Pos.TabIndex = 12;
-            // 
-            // LeaveButton
-            // 
-            this.LeaveButton.BackColor = System.Drawing.Color.Firebrick;
-            this.LeaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LeaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LeaveButton.ForeColor = System.Drawing.Color.Snow;
-            this.LeaveButton.Location = new System.Drawing.Point(10, 374);
-            this.LeaveButton.Name = "LeaveButton";
-            this.LeaveButton.Size = new System.Drawing.Size(197, 42);
-            this.LeaveButton.TabIndex = 15;
-            this.LeaveButton.Text = "Leave";
-            this.LeaveButton.UseVisualStyleBackColor = false;
-            this.LeaveButton.Click += new System.EventHandler(this.LeaveButton_Click);
             // 
             // InButton
             // 
@@ -252,27 +274,30 @@ namespace PayrollSystem
             // date_label
             // 
             this.date_label.AutoSize = true;
-            this.date_label.Location = new System.Drawing.Point(12, 13);
+            this.date_label.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.date_label.Location = new System.Drawing.Point(14, 15);
             this.date_label.Name = "date_label";
-            this.date_label.Size = new System.Drawing.Size(30, 13);
+            this.date_label.Size = new System.Drawing.Size(35, 16);
             this.date_label.TabIndex = 19;
             this.date_label.Text = "Date";
             // 
             // day_label
             // 
             this.day_label.AutoSize = true;
-            this.day_label.Location = new System.Drawing.Point(12, 32);
+            this.day_label.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.day_label.Location = new System.Drawing.Point(14, 42);
             this.day_label.Name = "day_label";
-            this.day_label.Size = new System.Drawing.Size(26, 13);
+            this.day_label.Size = new System.Drawing.Size(30, 16);
             this.day_label.TabIndex = 20;
             this.day_label.Text = "Day";
             // 
             // Time_label
             // 
             this.Time_label.AutoSize = true;
-            this.Time_label.Location = new System.Drawing.Point(12, 48);
+            this.Time_label.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Time_label.Location = new System.Drawing.Point(14, 67);
             this.Time_label.Name = "Time_label";
-            this.Time_label.Size = new System.Drawing.Size(30, 13);
+            this.Time_label.Size = new System.Drawing.Size(36, 16);
             this.Time_label.TabIndex = 21;
             this.Time_label.Text = "Time";
             // 
@@ -281,44 +306,17 @@ namespace PayrollSystem
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "DTR_id";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "IN_DTime";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "OUT_DTime";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Employee_id";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // DateTimeRecord_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 493);
+            this.ClientSize = new System.Drawing.Size(862, 493);
             this.Controls.Add(this.Time_label);
             this.Controls.Add(this.day_label);
             this.Controls.Add(this.date_label);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.OutButton);
             this.Controls.Add(this.InButton);
-            this.Controls.Add(this.LeaveButton);
             this.Controls.Add(this.Tb_Pos);
             this.Controls.Add(this.Tb_LN);
             this.Controls.Add(this.Tb_FN);
@@ -358,7 +356,6 @@ namespace PayrollSystem
         private System.Windows.Forms.TextBox Tb_FN;
         private System.Windows.Forms.TextBox Tb_LN;
         private System.Windows.Forms.TextBox Tb_Pos;
-        private System.Windows.Forms.Button LeaveButton;
         private System.Windows.Forms.Button InButton;
         private System.Windows.Forms.Button OutButton;
         private System.Windows.Forms.Button button1;
@@ -367,6 +364,7 @@ namespace PayrollSystem
         private System.Windows.Forms.Label Time_label;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

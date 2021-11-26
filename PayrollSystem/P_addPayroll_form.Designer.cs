@@ -55,6 +55,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.tb_bankAcc = new System.Windows.Forms.TextBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tb_empID = new System.Windows.Forms.TextBox();
@@ -63,7 +64,8 @@
             this.time_label = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.d_label = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_roll = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -301,6 +303,8 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.tb_roll);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.radioButton2);
             this.panel1.Controls.Add(this.tb_bankAcc);
             this.panel1.Controls.Add(this.radioButton1);
@@ -335,6 +339,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(747, 495);
             this.panel1.TabIndex = 4;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(28, 426);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(127, 24);
+            this.radioButton2.TabIndex = 8;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Pay on Hand?";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // tb_bankAcc
             // 
@@ -415,18 +432,23 @@
             this.d_label.TabIndex = 6;
             this.d_label.Text = "Date";
             // 
-            // radioButton2
+            // label4
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(28, 426);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(127, 24);
-            this.radioButton2.TabIndex = 8;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Pay on Hand?";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(275, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 16);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Roll Num :";
+            // 
+            // tb_roll
+            // 
+            this.tb_roll.Location = new System.Drawing.Point(347, 19);
+            this.tb_roll.Name = "tb_roll";
+            this.tb_roll.ReadOnly = true;
+            this.tb_roll.Size = new System.Drawing.Size(80, 20);
+            this.tb_roll.TabIndex = 10;
             // 
             // P_addPayroll_form
             // 
@@ -486,5 +508,7 @@
         private System.Windows.Forms.TextBox tb_bankAcc;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.TextBox tb_roll;
+        private System.Windows.Forms.Label label4;
     }
 }

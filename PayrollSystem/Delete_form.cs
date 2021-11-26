@@ -26,19 +26,17 @@ namespace PayrollSystem
             conn = connect.getConnect();
             conn.Open();
 
-            cmd = new SqlCommand("use PayrollSystemWInsert execute DeleteEmployees '" + tB_Id.Text + "', '" + tB_First.Text +"', '" + tB_Last.Text + "' ", conn);
+            cmd = new SqlCommand("use PayrollSystemWInsert execute DeleteEmployees '" + tB_Id.Text + "'", conn);
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Deleted...");
+                MessageBox.Show("Deleted Successfully");
                 tB_Id.Clear();
-                tB_First.Clear();
-                tB_Last.Clear();
                 tB_Id.Focus();
             }
             catch (Exception x)
             {
-                MessageBox.Show(" Not Deleted" + x.Message);
+                MessageBox.Show("Failed To Delete \n" + x.Message);
             }
             finally
             {

@@ -248,10 +248,10 @@ namespace PayrollSystem
             // IDNO
             // 
             this.IDNO.AutoSize = true;
-            this.IDNO.Font = new System.Drawing.Font("Microsoft Yi Baiti", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IDNO.Location = new System.Drawing.Point(319, 11);
+            this.IDNO.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDNO.Location = new System.Drawing.Point(317, 8);
             this.IDNO.Name = "IDNO";
-            this.IDNO.Size = new System.Drawing.Size(49, 12);
+            this.IDNO.Size = new System.Drawing.Size(42, 16);
             this.IDNO.TabIndex = 29;
             this.IDNO.Text = "ID NO :";
             // 

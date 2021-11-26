@@ -32,28 +32,38 @@ namespace PayrollSystem
         {
             conn = connect.getConnect();
             conn.Open();
-            cmd = new SqlCommand("use PayrollSystemWInsert execute InsertEmployee '" + addE_tbFN.Text +
-                                                    "','" + addE_LN.Text +
-                                                    "', '" + addE_age.Text +
-                                                    "', '" + addE_P.Text +
-                                                    "', '" + addE_bank.Text + 
-                                                    "', '" + add_TBDeductType.Text +
-                                                    "', '" + add_rTBDescrip.Text + "' ", conn);
-            cmd.ExecuteNonQuery(); 
+            cmd = new SqlCommand("use PayrollSystemWInsert execute InsertEmployee '" 
+                                                        + addE_tbFN.Text + // varchar
+                                                    "','" + addE_LN.Text + //varchar
+                                                    "', '" + addE_age.Text + //int
+                                                    "', '" + addE_P.Text + //varchar
+                                                    "', '" + addE_bank.Text +  //int
+                                                    "', '" + add_TBDeductType.Text + //varchar
+                                                    "', '" + add_rTBDescrip.Text + "' ", conn); //varchar
+            try
+            {
+                cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Saved");
+                MessageBox.Show("Saved");
 
-            cmd.Dispose();
-            conn.Close();
-            
-            //auto clear the textbox
-            addE_tbFN.Text = "";
-            addE_LN.Text = "";
-            addE_age.Text = "";
-            addE_P.Text = "";
-            addE_bank.Text = "";
-            add_rTBDescrip.Text = "";
-            add_TBDeductType.Text = "";
+                //auto clear the textbox
+                addE_tbFN.Text = "";
+                addE_LN.Text = "";
+                addE_age.Text = "";
+                addE_P.Text = "";
+                addE_bank.Text = "";
+                add_rTBDescrip.Text = "";
+                add_TBDeductType.Text = "";
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Failed to Add \n" + x.Message);
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
         }
 
     }

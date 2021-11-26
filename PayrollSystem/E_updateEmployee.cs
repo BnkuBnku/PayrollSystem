@@ -18,7 +18,6 @@ namespace PayrollSystem
         Connection connect = new Connection();
         SqlConnection conn;
         SqlCommand cmd;
-        SqlDataReader dr;
 
         public E_updateEmployee()
         {
@@ -47,14 +46,23 @@ namespace PayrollSystem
                                                     "', '" + tB_Bank.Text +
                                                     "', '" + up_TBDeductType.Text +
                                                     "', '" + up_rTBDescrip.Text + "' ", conn);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Updated");
+                MessageBox.Show("Updated");
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Failed to Update \n" + x.Message);
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
 
-            cmd.Dispose();
-            conn.Close();
-
-            this.Close();
+                this.Close();
+            }
         }
 
   

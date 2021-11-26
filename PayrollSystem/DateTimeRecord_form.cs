@@ -18,7 +18,8 @@ namespace PayrollSystem
         SqlCommand cmd;
         SqlDataReader dr;
 
-        string datetime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
+        
+
         public DateTimeRecord_form()
         {
             InitializeComponent();
@@ -33,10 +34,9 @@ namespace PayrollSystem
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            date_label.Text = DateTime.Now.ToString("MMM dd yyyy");
+            date_label.Text = DateTime.Now.ToString("dd-MM-yyyy");
             day_label.Text = DateTime.Now.ToString("dddd");
-            Time_label.Text = DateTime.Now.ToString("HH:mm");
-
+            Time_label.Text = DateTime.Now.ToString("hh:mm:ss");
         }
 
         private void DateTimeRecord_form_Load(object sender, EventArgs e)
@@ -51,16 +51,27 @@ namespace PayrollSystem
 
             dataGridView1.Rows.Clear();
             cmd = new SqlCommand("use PayrollSystemWInsert execute DisplayDTR", conn);
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            try
             {
-                dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3]);
-            }
+                dr = cmd.ExecuteReader();
 
-            dr.Close();
-            cmd.Dispose();
-            conn.Close();
+                while (dr.Read())
+                {
+                    dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4]);
+                }
+
+
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Failed to Load DTR List \n\n" + x.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cmd.Dispose();
+                conn.Close();
+            }
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -69,19 +80,30 @@ namespace PayrollSystem
             conn.Open();
 
             cmd = new SqlCommand("use PayrollSystemWInsert execute DisplayDtrEmployee '"+ Tb_InID.Text + "' ",conn);
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            try
             {
-                Tb_empID.Text = dr[0].ToString();
-                Tb_FN.Text = dr[1].ToString();
-                Tb_LN.Text = dr[2].ToString();
-                Tb_Pos.Text = dr[3].ToString();
-            }
+                dr = cmd.ExecuteReader();
 
-            dr.Close();
-            cmd.Dispose();
-            conn.Close();
+                while (dr.Read())
+                {
+                    Tb_empID.Text = dr[0].ToString();
+                    Tb_FN.Text = dr[1].ToString();
+                    Tb_LN.Text = dr[2].ToString();
+                    Tb_Pos.Text = dr[3].ToString();
+                }
+
+                
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Failed to Login \n\n" + x.Message);
+            }
+            finally
+            {
+                dr.Close();
+                cmd.Dispose();
+                conn.Close();
+            }
         }
 
         private void InButton_Click(object sender, EventArgs e)
@@ -89,14 +111,24 @@ namespace PayrollSystem
             conn = connect.getConnect();
             conn.Open();
 
-            cmd = new SqlCommand("use PayrollSystemWInsert execute InTimeEmp '" + Tb_empID.Text + "', '"+ datetime + "'",conn );
-            cmd.ExecuteNonQuery();
+            cmd = new SqlCommand("use PayrollSystemWInsert execute InTimeEmp '" + Tb_empID.Text + "', '" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "'", conn); ;
+            try
+            {
+                cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Time In Success");
-            cmd.Dispose();
-            conn.Close();
+                MessageBox.Show("Time In Success");
 
-            DTRLoad();
+                DTRLoad();
+            } 
+            catch (Exception x)
+            {
+                MessageBox.Show("Error Time In \n" + x.Message);
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
         }
 
         private void OutButton_Click(object sender, EventArgs e)
@@ -104,14 +136,31 @@ namespace PayrollSystem
             conn = connect.getConnect();
             conn.Open();
 
-            cmd = new SqlCommand("use PayrollSystemWInsert execute OutTimeEmp '" + Tb_empID.Text + "', '" + datetime + "'", conn);
-            cmd.ExecuteNonQuery();
+            conn = connect.getConnect();
+            conn.Open();
 
-            MessageBox.Show("Time Out Success");
-            cmd.Dispose();
-            conn.Close();
 
-            DTRLoad();
+
+            cmd = new SqlCommand("use PayrollSystemWInsert execute OutTimeEmp '" + Tb_empID.Text + "', '" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "'", conn);
+            try
+            {
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Time Out Success");
+
+
+                DTRLoad();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Error Time Out \n" + x.Message);
+            }
+            finally 
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+            
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -123,9 +172,6 @@ namespace PayrollSystem
             Tb_Pos.Clear();
         }
 
-        private void LeaveButton_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

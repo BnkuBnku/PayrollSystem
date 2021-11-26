@@ -40,7 +40,7 @@ namespace PayrollSystem
 
             while (dr.Read())
             {
-                dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7], dr[8], dr[9], dr[10], dr[11], dr[12], dr[13], dr[14]);
+                dataGridView1.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7], dr[8], dr[9], dr[10], dr[11], dr[12], dr[13], dr[14], dr[15]);
             }
 
 
@@ -60,7 +60,7 @@ namespace PayrollSystem
 
             while (dr.Read())
             {
-                dataGridView2.Rows.Add(dr[0], dr[1], dr[2], dr[3]);
+                dataGridView2.Rows.Add(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5]);
             }
 
 
@@ -92,8 +92,7 @@ namespace PayrollSystem
             
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
-                cmd = new SqlCommand("use PayrollSystemWInsert '" + dataGridView1.SelectedRows[0] + "'",conn);
+                cmd = new SqlCommand("use PayrollSystemWInsert delete from payrollsystem.PayReport where PayReportID = '" + dataGridView1.CurrentRow.Cells[0].Value + "'",conn);
                 cmd.ExecuteNonQuery();
             }
             else
@@ -103,6 +102,30 @@ namespace PayrollSystem
 
             cmd.Dispose();
             conn.Close();
+
+            LoadList();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            conn = connect.getConnect();
+            conn.Open();
+
+
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                cmd = new SqlCommand("use PayrollSystemWInsert delete from payrollsystem.SummaryPort where SummaryID = '" + dataGridView2.CurrentRow.Cells[0].Value + "'", conn);
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                MessageBox.Show("Select 1 row before you hit Delete");
+            }
+
+            cmd.Dispose();
+            conn.Close();
+
+            LoadListSum();
         }
     }
 }
